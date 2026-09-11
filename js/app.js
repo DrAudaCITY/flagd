@@ -13,6 +13,8 @@ import {
 import { renderInbox, renderThread } from './chat.js';
 import { renderTracking, stopTicking } from './dispatch.js';
 import { renderSupport, renderCase, renderAdmin } from './support-view.js';
+import { renderMapFilter, mapPredicate } from './map-filter.js';
+import { isVisibleToPros } from './flag-admin.js';
 import { renderProFeed, renderProFlag, renderPlans, renderProAccount } from './pro.js';
 
 const panel = document.getElementById('panel');
@@ -157,9 +159,20 @@ subscribe(() => {
 });
 
 /* ---------------------------------------------------------------- map filtering */
-// In pro mode the map shows other people's open flags; in buyer mode, everything.
+/**
+ * Two layers, and the order matters. The BASE decides what this person is allowed
+ * to see at all — in pro mode that is eligibility, and it is not negotiable. The
+ * user's own filter then narrows that further. `mapPredicate` can only remove.
+ */
 function syncMapFilter() {
-  gmap.renderFlags(state.mode === 'pro' ? (f) => !f.mine && f.status === 'open' : null);
+  const base = state.mode === 'pro'
+    ? (f) => !f.mine && f.status === 'open' && isVisibleToPros(f)
+    : null;
+
+  gmap.renderFlags(mapPredicate(base));
+
+  const host = document.getElementById('mapFilter');
+  if (host) host.innerHTML = renderMapFilter(base);
 }
 
 /* ---------------------------------------------------------------- top bar */

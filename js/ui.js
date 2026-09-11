@@ -90,6 +90,7 @@ export function icon(name) {
     send:  '<path d="M3.5 11.5L21 4l-7 17-2.8-6.8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M11.2 14.2L21 4" fill="none" stroke="currentColor" stroke-width="1.9"/>',
     bolt:  '<path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/>',
     go:    '<path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+    filter:'<path d="M3 5h18l-7 8v6l-4 2v-8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>',
   };
   return `<svg viewBox="0 0 24 24" aria-hidden="true">${P[name] || ''}</svg>`;
 }
