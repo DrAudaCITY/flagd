@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" role="presentation">
+  <!--
+    Abstract street network used as an out-of-focus backdrop behind the panel.
+    Deliberately unreadable: no labels, no real geography. It exists to stop the
+    surface reading as a blank sheet, so it is drawn in the forest palette at low
+    contrast and blurred by CSS. Transparent ground — the panel supplies the tint.
+  -->
+  <defs>
+    <g id="blockrow">
+      <rect x="0" y="0" width="54" height="38" rx="3"/>
+      <rect x="72" y="0" width="66" height="38" rx="3"/>
+      <rect x="156" y="0" width="48" height="38" rx="3"/>
+    </g>
+  </defs>
+
+  <!-- city blocks: faint fills that give the grid something to divide -->
+  <g fill="#0d3b2f" opacity=".085">
+    <use href="#blockrow" x="60" y="120"/>
+    <use href="#blockrow" x="60" y="196"/>
+    <use href="#blockrow" x="60" y="272"/>
+    <use href="#blockrow" x="330" y="120"/>
+    <use href="#blockrow" x="330" y="196"/>
+    <use href="#blockrow" x="330" y="272"/>
+    <use href="#blockrow" x="60" y="520"/>
+    <use href="#blockrow" x="60" y="596"/>
+    <use href="#blockrow" x="330" y="520"/>
+    <use href="#blockrow" x="330" y="596"/>
+    <use href="#blockrow" x="600" y="430"/>
+    <use href="#blockrow" x="600" y="506"/>
+  </g>
+
+  <!-- parkland -->
+  <path d="M470 560 q70 -54 156 -22 q78 30 106 96 l-22 130 -252 8 z"
+        fill="#0d3b2f" opacity=".14"/>
+  <path d="M92 44 q88 -30 150 14 l-10 62 -150 -6 z" fill="#0d3b2f" opacity=".12"/>
+
+  <!-- water: one broad curve through the whole frame -->
+  <path d="M-40 402 C 130 448, 236 342, 396 392 S 632 486, 850 430"
+        fill="none" stroke="#1b5a47" stroke-width="30" opacity=".2" stroke-linecap="round"/>
+
+  <!-- minor streets -->
+  <g stroke="#0d3b2f" stroke-width="2" opacity=".24" stroke-linecap="round">
+    <path d="M60 120 H540 M60 196 H540 M60 272 H540 M60 348 H300"/>
+    <path d="M60 520 H540 M60 596 H540 M60 672 H420"/>
+    <path d="M600 430 H790 M600 506 H790 M600 582 H790"/>
+    <path d="M120 90 V400 M198 90 V400 M282 90 V400 M366 110 V400 M450 110 V372"/>
+    <path d="M120 490 V720 M198 490 V720 M282 490 V720 M366 490 V700"/>
+    <path d="M660 400 V700 M732 400 V700"/>
+  </g>
+
+  <!-- arterials -->
+  <g stroke="#0d3b2f" stroke-width="6" opacity=".28" stroke-linecap="round">
+    <path d="M-20 92 H820"/>
+    <path d="M-20 462 H820"/>
+    <path d="M544 -20 V820"/>
+    <path d="M36 -20 V820"/>
+  </g>
+
+  <!-- a highway cutting the grid on the diagonal, the way they always do -->
+  <path d="M-60 700 L 420 260 L 560 190 L 880 120" fill="none"
+        stroke="#0d3b2f" stroke-width="11" opacity=".26" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M-60 700 L 420 260 L 560 190 L 880 120" fill="none"
+        stroke="#e9f0ec" stroke-width="3" opacity=".5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- a couple of curved residential loops so it is not all right angles -->
+  <g fill="none" stroke="#0d3b2f" stroke-width="2.5" opacity=".22" stroke-linecap="round">
+    <path d="M636 132 q64 -46 122 6 q46 44 4 94"/>
+    <path d="M642 190 q52 -30 96 8"/>
+    <path d="M150 742 q86 -40 168 -4"/>
+  </g>
+</svg>

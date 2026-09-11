@@ -102,7 +102,21 @@
 /* ---------- the page itself is tinted, the cards stay white ----------
    This is the real fix for "too white": a faint green wash behind the content
    gives every card an edge to sit against, without adding a single border. */
-.panel-body{background:var(--forest-tint)}
+/* The tint moves up to the panel so a map texture can sit between it and the
+   content. Cards stay solid white and float over the top. */
+.panel{background:var(--forest-tint);position:relative;overflow:hidden}
+.panel::before{
+  content:"";position:absolute;inset:-8%;z-index:0;pointer-events:none;
+  background:url("map-texture.svg") center / cover no-repeat;
+  filter:blur(3px);
+  opacity:.85;
+}
+.panel-body,.tabs,.panel-grab{position:relative;z-index:1}
+.panel-body{background:transparent}
+.tabs{background:var(--forest-tint)}
+
+/* Nothing decorative should cost a reader who asked for less motion or more contrast. */
+@media (prefers-contrast:more){ .panel::before{display:none} }
 .empty{background:var(--paper);border:1px solid var(--forest-line)}
 .inbox-row.unread{background:#eaf2ee}
 .sms{background:#e6eeea}
