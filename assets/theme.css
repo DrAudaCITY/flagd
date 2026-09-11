@@ -157,3 +157,113 @@
 /* --brand (#ff4b26) still means "a flag": the logo mark, unread dots,
    the live pulse and the glyph inside the FAB. Nothing else. */
 .brand-word::after{background:var(--brand)}
+
+/* ============================================================
+   Selection edge — forest to gold hairline
+   Applied to things the user CHOOSES BETWEEN, not to every surface.
+   Buttons that perform an action keep their solid fill; an option that
+   can be picked gets the edge, and picking it brings the edge to full
+   strength. That way the treatment carries meaning instead of decoration.
+
+   Technique: two backgrounds, one clipped to the padding box for the fill
+   and one to the border box for the gradient. border-image cannot do this
+   because it ignores border-radius.
+   ============================================================ */
+:root{
+  --gold:#c9a24a;
+  --gold-lt:#e6cd8f;
+  --edge-on:linear-gradient(135deg,#0d3b2f 0%,#15533f 26%,#c9a24a 70%,#e6cd8f 100%);
+  --edge-rest:linear-gradient(135deg,rgba(13,59,47,.34) 0%,rgba(21,83,63,.24) 30%,rgba(201,162,74,.46) 72%,rgba(230,205,143,.55) 100%);
+}
+
+/* ---------- category and issue option rows ---------- */
+.cats{gap:8px}
+.cat{
+  border:1px solid transparent;border-radius:var(--radius);padding:13px 14px;
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-rest) border-box;
+}
+.cat:hover{
+  background:linear-gradient(var(--forest-tint),var(--forest-tint)) padding-box,
+             var(--edge-on) border-box;
+}
+.cat:active{
+  background:linear-gradient(var(--forest-soft),var(--forest-soft)) padding-box,
+             var(--edge-on) border-box;
+}
+
+/* ---------- chips: faint at rest, full gradient when chosen ---------- */
+.chip{
+  border:1px solid transparent;
+  background:linear-gradient(var(--mist),var(--mist)) padding-box,
+             var(--edge-rest) border-box;
+}
+.chip:hover{
+  background:linear-gradient(var(--mist-2),var(--mist-2)) padding-box,
+             var(--edge-on) border-box;
+}
+.chip.on{
+  color:#fff;
+  background:linear-gradient(var(--forest),var(--forest)) padding-box,
+             var(--edge-on) border-box;
+}
+
+/* ---------- selectable cards: bids, leads, flags ---------- */
+.card.tap{
+  border:1px solid transparent;
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-rest) border-box;
+}
+.card.tap:hover{
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-on) border-box;
+}
+.card.tap.live{
+  background:linear-gradient(var(--forest-tint),var(--forest-tint)) padding-box,
+             var(--edge-on) border-box;
+}
+
+/* ---------- the one that was picked ---------- */
+.card.hi{
+  border:2px solid transparent;padding:15px;
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-on) border-box;
+}
+
+/* ---------- subscription plans ---------- */
+.plan{
+  border:1px solid transparent;padding:20px;
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-rest) border-box;
+}
+.plan:hover{
+  background:linear-gradient(var(--paper),var(--paper)) padding-box,
+             var(--edge-on) border-box;
+}
+.plan.pick{
+  border:2px solid transparent;padding:19px;
+  background:linear-gradient(var(--forest-tint),var(--forest-tint)) padding-box,
+             var(--edge-on) border-box;
+}
+.plan-tag{background:var(--edge-on)}
+
+/* ---------- segmented controls ---------- */
+.cat-tabs button{position:relative}
+.cat-tabs button.on{border-bottom-color:transparent}
+.cat-tabs button.on::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;
+  background:var(--edge-on);
+}
+.modeswitch button.on{
+  border:1px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box, var(--edge-on) border-box;
+}
+
+/* ---------- active tab indicator ---------- */
+.tabs button.on::after{background:var(--edge-on)}
+
+/* ---------- high contrast: a gradient edge is a worse edge ---------- */
+@media (prefers-contrast:more){
+  .cat,.chip,.card.tap,.plan{background:var(--paper);border-color:var(--forest)}
+  .chip.on,.plan.pick,.card.hi{background:var(--forest-tint);border-color:var(--forest)}
+}

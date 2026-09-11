@@ -51,14 +51,16 @@
 
 /* ---------- cards ---------- */
 .card.tap{transition:transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease)}
-.card.tap:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-color:#d2d2d2;background:var(--paper)}
+/* Lift and shadow only — the border and background belong to the selection
+   edge in theme.css, and repainting either here would erase the gradient. */
+.card.tap:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
 .card.tap:active{transform:translateY(0) scale(.995);box-shadow:none;transition-duration:70ms}
 
 /* ---------- category rows ---------- */
 .cat{transition:background var(--t-fast) var(--ease),padding-left var(--t) var(--ease)}
 .cat-ico{transition:transform var(--t) var(--ease-spring),background var(--t) var(--ease)}
 .cat-go{transition:transform var(--t) var(--ease),color var(--t) var(--ease)}
-.cat:hover{padding-left:10px}
+.cat:hover{padding-left:19px}
 .cat:hover .cat-ico{transform:scale(1.08);background:var(--mist-2)}
 .cat:hover .cat-go{transform:translateX(4px);color:var(--ink)}
 .cat:active{background:var(--mist-2)}
