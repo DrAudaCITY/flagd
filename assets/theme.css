@@ -1,0 +1,145 @@
+/* ============================================================
+   Flagd — colour theme
+   Loaded between styles.css (structure) and motion.css (interaction),
+   so all colour decisions live in one file.
+
+   The monochrome build was correct but cold: page after page of white
+   with black type. Deep forest green now carries the chrome and every
+   primary action, tinted surfaces break up the white, and the flag
+   orange stays exactly where it was — reserved for the flag itself.
+   ============================================================ */
+:root{
+  --forest:#0d3b2f;          /* chrome, primary CTAs, selected state */
+  --forest-600:#124b3b;      /* hover */
+  --forest-800:#092a21;      /* pressed */
+  --forest-soft:#eef3f0;     /* tinted surface, breaks up the white */
+  --forest-tint:#f7faf8;     /* barely-there section wash */
+  --forest-line:#d8e5df;     /* tinted hairline */
+}
+
+/* ---------- chrome ---------- */
+.topbar{background:var(--forest)}
+.brand-mark{color:#fff}
+
+/* ---------- basemap ----------
+   Google gets a real style array (see MONO_STYLE in map-google.js). OSM raster
+   tiles can only be recoloured with a filter: strip to grey, push through sepia
+   to get a hue to work with, then rotate it into the brand green. */
+.leaflet-tile-pane{filter:grayscale(1) sepia(.7) hue-rotate(118deg) saturate(.45) brightness(1.01) contrast(.97)}
+
+/* ---------- primary actions ---------- */
+.btn,.btn.brand{background:var(--forest)}
+.btn:hover,.btn.brand:hover{background:var(--forest-600)}
+.btn:active,.btn.brand:active{background:var(--forest-800)}
+.fab{background:var(--forest)}
+.fab:hover{background:var(--forest-600)}
+.placing-bar{background:var(--forest)}
+.pop-b{background:var(--forest)}
+.toast{background:var(--forest)}
+
+/* ghost buttons pick up the tint rather than plain grey */
+.btn.ghost{background:var(--forest-soft);color:var(--forest)}
+.btn.ghost:hover{background:#e3ece7}
+
+/* ---------- selected & active state ---------- */
+.tabs button.on{color:var(--forest)}
+.tabs button::after{background:var(--forest)}
+.chip.on{background:var(--forest);border-color:var(--forest)}
+.cat-tabs button.on{color:var(--forest);border-bottom-color:var(--forest)}
+.card.hi{border-color:var(--forest)}
+.plan.pick{border-color:var(--forest)}
+.plan-tag{background:var(--forest)}
+.plan li::before{color:var(--forest)}
+.meter i{background:var(--forest)}
+.modeswitch button.on{color:var(--forest)}
+
+/* ---------- form focus ---------- */
+.inp:focus{border-color:var(--forest)}
+.composer textarea:focus{border-color:var(--forest)}
+
+/* ---------- avatars, chat, badges ---------- */
+.av{background:var(--forest)}
+.msg.me{background:var(--forest)}
+.msg.offer{border-color:var(--forest)}
+.msg.offer .o-p{color:var(--forest)}
+.composer .send{background:var(--forest)}
+.composer .send:hover{background:var(--forest-600)}
+.composer .attach{background:var(--forest-soft);color:var(--forest)}
+.badge.b-hired{background:var(--forest)}
+.badge.b-open{background:#e4f0ea;color:var(--forest)}
+.homepin i{background:var(--forest)}
+
+/* ---------- stars stay dark green so ratings read as part of the brand ---------- */
+.stars .s-full{fill:var(--forest)}
+.starpick button.on svg{fill:var(--forest)}
+
+/* ---------- tinted surfaces: the actual fix for "too white" ---------- */
+.card.flat{background:var(--forest-soft)}
+.waiting{background:var(--forest-soft);color:var(--forest)}
+.kpis{background:var(--forest-line);border-color:var(--forest-line)}
+.kpi{background:var(--forest-tint)}
+.kpi b{color:var(--forest)}
+.empty{background:var(--forest-tint);border-radius:var(--radius-lg);margin:8px 16px}
+.thread-msgs{background:var(--forest-tint)}
+.msg.them{background:#fff;border:1px solid var(--forest-line)}
+.typing{background:#fff;border:1px solid var(--forest-line)}
+.inbox-row.unread{background:var(--forest-tint)}
+.sec-t{color:#5f7a70}
+
+/* section wash used by the bigger explanatory blocks */
+.wash{background:var(--forest-soft);border-radius:var(--radius-lg);padding:18px;margin-top:12px}
+
+/* ---------- numbers carry the brand colour ----------
+   Money and counts are what the eye lands on first in a marketplace, so they
+   read as green rather than as plain black type. */
+.price{color:var(--forest)}
+.plan-p{color:var(--forest)}
+.trk-eta{color:var(--forest)}
+.kv b{color:var(--forest)}
+.rate-n{color:var(--forest)}
+.count{color:var(--forest)}
+
+/* ---------- the page itself is tinted, the cards stay white ----------
+   This is the real fix for "too white": a faint green wash behind the content
+   gives every card an edge to sit against, without adding a single border. */
+.panel-body{background:var(--forest-tint)}
+.empty{background:var(--paper);border:1px solid var(--forest-line)}
+.inbox-row.unread{background:#eaf2ee}
+.sms{background:#e6eeea}
+
+/* ---------- list furniture ---------- */
+.cat-ico{background:#e1ece6}
+.cat:hover .cat-ico{background:#d3e4db}
+.card{border-color:var(--forest-line)}
+.card.tap:hover{border-color:#b6cdc3}
+.kpis{border-color:var(--forest-line)}
+.quote{border-top-color:var(--forest-line)}
+.rev{border-bottom-color:var(--forest-line)}
+.cat{border-bottom-color:var(--forest-line)}
+.inbox-row{border-bottom-color:var(--forest-line)}
+.tabs{border-top-color:var(--forest-line)}
+.thread-head{border-bottom-color:var(--forest-line)}
+.composer{border-top-color:var(--forest-line)}
+
+/* section headings read as green, not grey */
+.sec-t{color:var(--forest);opacity:.68}
+
+/* numbered steps in "how it works" */
+.step-n{background:var(--forest)}
+
+/* reward tiers */
+.tier-dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:0 0 auto;
+  box-shadow:0 0 0 3px rgba(13,59,47,.08)}
+.tier-dot.t-new{background:#b7c6bf}
+.tier-dot.t-trusted{background:var(--forest)}
+.tier-dot.t-verified{background:#1f7a5c}
+.tier-dot.t-gold,.tier-dot.t-bronze{background:#c08a2e}
+.tier-dot.t-silver{background:#9aa5a0}
+
+/* an active job stands out from the rest of the list */
+.card.live{background:var(--forest-tint);border-color:var(--forest-line)}
+
+/* ---------- the flag accent is untouched ---------- */
+/* --brand (#ff4b26) still means "a flag": the logo mark, unread dots,
+   the live pulse and the glyph inside the FAB. Nothing else. */
+.brand-word::after{background:var(--brand)}

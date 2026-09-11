@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Flagd — Plant a flag. Let the pros come to you.</title>
+<meta name="description" content="Flagd is a reverse marketplace: drop a flag on the map for the service you need or the item you want to buy, and verified local pros and sellers bid for your business." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="assets/motion.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230f1424'/><rect x='9' y='6' width='2.6' height='21' rx='1.3' fill='%23f4f6fa'/><path d='M12.6 7.2h11.2l-3 4.4 3 4.4H12.6z' fill='%23ff4b26'/></svg>" />
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#" onclick="return false;" aria-label="Flagd home">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="9" y="5" width="2.8" height="23" rx="1.4" fill="currentColor"/>
+      <path d="M12.8 6.4h12.4l-3.3 4.9 3.3 4.9H12.8z" fill="#ff4b26"/>
+    </svg>
+    <span class="brand-word">Flagd</span>
+  </a>
+
+  <form class="addrbar" id="addrForm" autocomplete="off" role="search">
+    <svg class="addrbar-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input id="addrInput" type="search" placeholder="Search an address, city or ZIP…"
+           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search location" />
+    <button type="button" class="addrbar-gps" id="gpsBtn" title="Use my location" aria-label="Use my location">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3m0 14v3M2 12h3m14 0h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+    </button>
+  </form>
+
+  <div class="modeswitch" role="tablist" aria-label="Account mode">
+    <button id="modeBuyer" class="on" role="tab" aria-selected="true">I need something</button>
+    <button id="modePro" role="tab" aria-selected="false">I'm a pro</button>
+  </div>
+</header>
+
+<main class="shell">
+  <div id="map" aria-label="Map of flags"></div>
+
+  <aside class="panel" id="panel" aria-live="polite">
+    <button class="panel-grab" id="panelGrab" aria-label="Expand or collapse panel"></button>
+    <div class="panel-body" id="panelBody"></div>
+    <nav class="tabs" id="tabs" aria-label="Main navigation"></nav>
+  </aside>
+
+  <button class="fab" id="fab">
+    <span class="fab-flag" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><rect x="9" y="5" width="2.8" height="23" rx="1.4" fill="#fff"/><path d="M12.8 6.4h12.4l-3.3 4.9 3.3 4.9H12.8z" fill="#ff4b26"/></svg>
+    </span>
+    <span>Plant a flag</span>
+  </button>
+
+  <div class="placing-bar" id="placingBar" hidden>
+    <span id="placingText">Tap the map to place your flag</span>
+    <button id="placingCancel">Cancel</button>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-scrim" id="modalScrim"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="modal-in" id="modalIn"></div></div>
+
+<!-- For a deployment, set the Maps key here from an untracked snippet instead of pasting
+     it into the app: <script>window.FLAGD_GOOGLE_MAPS_KEY = "...";</script>
+     The map library itself is loaded on demand by js/map.js. -->
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
